@@ -125,6 +125,7 @@
             {{ netbox_virtualenv_path }}/bin/python {{ netbox_current_path }}/netbox/manage.py shell"
     register: _netbox_superuser_result
     changed_when: "'changed' in _netbox_superuser_result.stdout"
+    no_log: yes
     when:
       - not netbox_ldap_enabled
 
