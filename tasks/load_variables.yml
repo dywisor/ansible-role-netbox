@@ -7,6 +7,11 @@
     - "{{ ansible_distribution|lower }}.yml"
     - "{{ ansible_os_family|lower }}.yml"
 
+- name: Define netbox_setup_uwsgi
+  set_fact:
+    netbox_setup_uwsgi: "{{ _netbox_setup_uwsgi | default(True) }}"
+  when: netbox_setup_uwsgi is not defined
+
 - name: Define netbox_packages
   set_fact:
     netbox_packages: "{{ _netbox_packages | list }}"
