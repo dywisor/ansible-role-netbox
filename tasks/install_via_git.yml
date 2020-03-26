@@ -7,6 +7,9 @@
   register: _netbox_git_repo
   become: True
   become_user: "{{ netbox_user }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
 
 - name: Create git deployment directory for NetBox
   file:
@@ -35,6 +38,9 @@
     - _netbox_git_repo is changed
   become: True
   become_user: "{{ netbox_user }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
 
 - name: Symlink git repository to current NetBox directory
   file:

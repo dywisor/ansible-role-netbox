@@ -27,6 +27,9 @@
     login_unix_socket: "{{ netbox_database_socket }}"
   become: True
   become_user: "{{ netbox_database_user }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
   when:
     - netbox_database_socket is defined
     - netbox_database_host is not defined
@@ -38,6 +41,9 @@
     port: "{{ netbox_database_port }}"
     login_user: "{{ netbox_database_user }}"
     login_password: "{{ netbox_database_password }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
   when:
     - netbox_database_socket is not defined
     - netbox_database_host is defined

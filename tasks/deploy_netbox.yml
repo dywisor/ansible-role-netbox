@@ -34,6 +34,9 @@
     virtualenv_command: "{{ netbox_python_binary }} -m venv"
   become: True
   become_user: "{{ netbox_user }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
   retries: 2
   register: _netbox_virtualenv_setup
   until: _netbox_virtualenv_setup is succeeded
@@ -45,6 +48,9 @@
     virtualenv: "{{ netbox_virtualenv_path }}"
   become: True
   become_user: "{{ netbox_user }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
   retries: 2
   register: _netbox_pip_additional_install
   until: _netbox_pip_additional_install is succeeded
@@ -152,3 +158,6 @@
 
   become: True
   become_user: "{{ netbox_user }}"
+  # See: https://github.com/ansible/ansible/issues/16048#issuecomment-229012509
+  vars:
+    ansible_ssh_pipelining: true
