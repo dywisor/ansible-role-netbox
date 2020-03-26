@@ -17,6 +17,11 @@
     netbox_python_packages: "{{ _netbox_python_packages | list }}"
   when: netbox_python_packages is not defined
 
+- name: Define netbox_python_version
+  set_fact:
+    netbox_python_version: "{{ _netbox_python_version }}"
+  when: netbox_python_version is not defined
+
 - name: Define netbox_python_binary
   set_fact:
     netbox_python_binary: "{{ _netbox_python_binary }}"

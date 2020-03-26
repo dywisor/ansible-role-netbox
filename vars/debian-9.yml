@@ -13,7 +13,8 @@ _netbox_python_packages:
   - python3-venv
   - python3-pip
   - python3-psycopg2 # used by ansible's postgres modules
-_netbox_python_binary: /usr/bin/python3.5
+_netbox_python_version: '3.5'
+_netbox_python_binary: '/usr/bin/python{{ netbox_python_version }}'
 _netbox_ldap_packages:
   - libldap2-dev
   - libsasl2-dev

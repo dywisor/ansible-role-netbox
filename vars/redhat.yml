@@ -12,6 +12,7 @@ _netbox_python_packages:
   - python36
   - python36-devel
   - python36-setuptools
-_netbox_python_binary: /usr/bin/python3.6
+_netbox_python_version: '3.6'
+_netbox_python_binary: '/usr/bin/python{{ netbox_python_version }}'
 _netbox_ldap_packages:
   - openldap-devel
