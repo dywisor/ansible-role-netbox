@@ -27,6 +27,11 @@
     netbox_python_binary: "{{ _netbox_python_binary }}"
   when: netbox_python_binary is not defined
 
+- name: Define netbox_pip_binary
+  set_fact:
+    netbox_pip_binary: "{{ _netbox_pip_binary }}"
+  when: netbox_pip_binary is not defined
+
 - name: Define netbox_ldap_packages
   set_fact:
     netbox_ldap_packages: "{{ _netbox_ldap_packages | list }}"
