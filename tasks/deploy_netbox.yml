@@ -15,6 +15,16 @@
 
 - include_tasks: "install_via_{{ 'git' if netbox_git else 'stable' }}.yml"
 
+- name: Symlink git repository to current NetBox directory
+  file:
+    src: "{{ netbox_deploy_path }}"
+    dest: "{{ netbox_current_path }}"
+    owner: "{{ netbox_user }}"
+    group: "{{ netbox_group }}"
+    state: link
+  notify:
+    - reload netbox.service
+
 - import_tasks: generate_secret_key.yml
   when:
     - netbox_config.SECRET_KEY is not defined
