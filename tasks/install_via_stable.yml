@@ -8,9 +8,13 @@
     group: "{{ netbox_group }}"
     remote_src: True
 
+- name: Set NetBox deploy path
+  set_fact:
+    netbox_deploy_path: "{{ netbox_stable_path }}"
+
 - name: Symlink stable release to current NetBox directory
   file:
-    src: "{{ netbox_stable_path }}"
+    src: "{{ netbox_deploy_path }}"
     dest: "{{ netbox_current_path }}"
     owner: "{{ netbox_user }}"
     group: "{{ netbox_group }}"
