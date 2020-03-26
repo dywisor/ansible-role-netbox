@@ -83,6 +83,7 @@
   notify:
     - restart netbox.socket
   when:
+    - ansible_service_mgr == 'systemd'
     - netbox_setup_uwsgi
 
 - name: Install NetBox service unit file
@@ -92,6 +93,7 @@
   notify:
     - restart netbox.service
   when:
+    - ansible_service_mgr == 'systemd'
     - netbox_setup_uwsgi
 
 - name: Install NetBox-rqworker service unit file
@@ -101,6 +103,7 @@
   notify:
     - restart netbox-rqworker.service
   when:
+    - ansible_service_mgr == 'systemd'
     - netbox_setup_uwsgi
 
 - name: Start and enable NetBox' socket and service
@@ -112,6 +115,7 @@
     - netbox.socket
     - netbox.service
   when:
+    - ansible_service_mgr == 'systemd'
     - netbox_setup_uwsgi
 
 - name: Start and enable netbox-rqworker.service
@@ -119,3 +123,5 @@
     name: netbox-rqworker.service
     state: started
     enabled: yes
+  when:
+    - ansible_service_mgr == 'systemd'
