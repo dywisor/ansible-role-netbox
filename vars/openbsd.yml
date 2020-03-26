@@ -1,0 +1,27 @@
+---
+# https://github.com/python-pillow/Pillow/issues/1412
+#
+# pillow in venv depends on (build + runtime dep):
+# - libjpeg[-turbo]
+# - libzlib -> part of the OpenBSD installation
+# These dependencies are not always needed,
+# absence causes failures from time to time,
+# depending on the current release @upstream.
+#
+_netbox_packages:
+  - jpeg
+
+_netbox_python_packages:
+  # python3.7 already installed
+  - py3-pip
+  - py3-virtualenv
+  - py3-psycopg2 # used by ansible's postgres modules
+
+_netbox_python_version: '3.7'
+_netbox_python_binary: '/usr/local/bin/python{{netbox_python_version}}'
+_netbox_pip_binary: '/usr/local/bin/pip{{netbox_python_version}}'
+
+_netbox_setup_uwsgi: no
+
+# FIXME: libldap-dev, libsasl2-dev in Debian, ??? in OpenBSD
+_netbox_ldap_packages: []

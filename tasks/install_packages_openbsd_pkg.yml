@@ -1,0 +1,11 @@
+---
+- name: Install required packages for selected NetBox configuration
+  openbsd_pkg:
+    name: "{{ _netbox_apt_packages | flatten }}"
+    state: present
+  vars:
+    _netbox_apt_packages:
+      - "{{ netbox_python_packages }}"
+      - "{{ netbox_packages }}"
+      - "{{ netbox_ldap_packages if netbox_ldap_enabled else [] }}"
+      - "{{ 'git' if netbox_git else [] }}"
